@@ -1,7 +1,7 @@
 {
   "name": "starbound-autocomplete-json",
   "main": "./liv/main",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A slightly modified version of the autocomplete-json package for starbound modding.",
   "license": "MIT",
   "repository": "https://github.com/C0bra5/starbound-autocomplete-json",
@@ -10,10 +10,8 @@
     "language-json-comments:grammar-used",
     "starbound-language-json:grammar-used"
   ],
-  "consumedServices": {
-  },
-  "dependencies": {
-  },
+  "consumedServices": {},
+  "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^7.1.1",
     "eslint": "^3.16.0"
