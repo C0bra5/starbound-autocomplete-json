@@ -1,7 +1,7 @@
 {
   "name": "starbound-autocomplete-json",
   "main": "./lib/main",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A slightly modified version of the autocomplete-json package for starbound modding.",
   "license": "MIT",
   "repository": "https://github.com/C0bra5/starbound-autocomplete-json",
