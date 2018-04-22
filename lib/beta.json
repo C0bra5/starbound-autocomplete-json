@@ -1,0 +1,125 @@
+[
+	{
+		"name" : "animationParts",
+		"type" : "object",
+		"desc" : "A dictionary that identifies the image file to use for an animation part.",
+		"content" : [
+			{
+				"name" : "butt",
+				"type" : "string",
+				"desc" : "The butt of a gun",
+				"enum" : [
+					"someting.png",
+					{
+						"value" : "something_else.png",
+						"desc" : "an other enum with documentation"
+					}
+				]
+			}
+		]
+	},
+	{
+		"name" : "baseOffset",
+		"type" : "array",
+		"description" : "the intial offset of the center of the image from the hand position of the player",
+		"enum" : [
+			{
+				"value" : "test",
+				"desc" : "this is a test thing to remove"
+			}
+		],
+		"content" : {
+			"type" : "array",
+			"enum" : [
+				{
+					"value" : "nested",
+					"desc" : "this is a nested enum"
+				}
+			],
+			"content" : "activeItem"
+		}
+	},
+	{
+		"name" : "activeItem",
+		"type" : "object",
+		"base" : "normalItem",
+		"fileType" : "activeItem",
+		"desc" : "An active item descriptor",
+		"content" : [
+			"animationParts",
+			"baseOffset",
+			{ "name" : "primaryAbility", "base" : "itemAbility", "desc" : "the ability that is used when using the primary fire button" }
+		]
+	},
+	{
+		"name" : "itemAbility",
+		"type" : "object",
+		"desc" : "An ability that can be bound to an item",
+		"content" : [
+			{
+				"name" : "stances",
+				"type" : "object",
+				"desc" : "A list of the poses the weilder takes while holding the item",
+				"content" : [
+					{ "name" : "idle", "base" : "stance" },
+					{ "name" : "fire", "base" : "stance" },
+					{ "name" : "cooldown", "base" : "stance" },
+					{ "name" : "charge", "base" : "stance" },
+					{ "name" : "discharge", "base" : "stance" },
+					{ "name" : "windup1", "base" : "stance" },
+					{ "name" : "preslash1", "base" : "stance" },
+					{ "name" : "fire1", "base" : "stance" },
+					{ "name" : "wait1", "base" : "stance" },
+					{ "name" : "windup2", "base" : "stance" },
+					{ "name" : "preslash2", "base" : "stance" },
+					{ "name" : "fire2", "base" : "stance" },
+					{ "name" : "wait2", "base" : "stance" },
+					{ "name" : "windup3", "base" : "stance" },
+					{ "name" : "preslash3", "base" : "stance" },
+					{ "name" : "fire3", "base" : "stance" },
+					{ "name" : "wait3", "base" : "stance" }
+				]
+			}
+		]
+	},
+	{
+		"name" : "stance",
+		"type" : "object",
+		"desc" : "Describes the pose an actor takes while using an item",
+		"link" : "http://jojo.wikia.com/wiki/Stand",
+		"content" : [
+			{
+				"name" : "weaponRotation",
+				"type" : "float",
+				"desc" : "The rotation of the weapon in the arms of the weilder in rads (2xPI = 1 full circle).  \nThe weapon rotation is coumpounded on the arm rotation."
+			},
+			{
+				"name" : "armRotation",
+				"type" : "float",
+				"desc" : "The rotation of the actor's arm in rads (2xPI = 1 full circle)."
+			}
+		]
+	},
+	{
+		"name" : "rarity",
+		"type" : "string",
+		"enum" : [ "common", "uncommon", "rare", "legendary", "essnetial"]
+	},
+	{
+		"type" : "object",
+		"name" : "normalItem",
+		"content" : [
+			{ "name" : "itemName", "type" : "string", "desc" :"The id used to reference to a specific item" },
+			{ "name" : "price", "type" : "int", "desc" :"The price of the item" },
+			{ "name" : "level", "type" : "int", "desc" :"The level of the item, this is usually used to influence the abilities of the item." },
+			{ "name" : "maxStack", "type" : "int", "desc" :"The maximum stack size for the item" },
+			{ "ref" : "rarity", "desc" : "The rarity of the item" },
+			{ "name" : "description", "type" : "string", "desc" : "A long description of the item" },
+			{ "name" : "shortdescription", "type" : "string", "desc" : "The formatted name of the item" },
+			{ "name" : "tooltipKind", "type" : "string", "desc" : "The type of tooltip to use for this item" },
+			{ "name" : "category", "type" : "string", "desc" : "The item category this item is a part of." },
+			{ "name" : "twoHanded", "type" : "bool", "desc" : "Wether the item should be held by both hands"},
+			{ "name" : "inventoryIcon", "type" : "string", "desc" : "The path to the image used to represent the item in inventories."}
+		]
+	}
+]
