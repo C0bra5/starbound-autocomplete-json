@@ -1,7 +1,7 @@
 {
   "name": "starbound-autocomplete-json",
   "main": "./lib/main",
-  "version": "2.1.3",
+  "version": "3.0.0",
   "description": "A custom, expandable, JSON autocomplete package, with starbound presets.",
   "license": "MIT",
   "repository": "https://github.com/C0bra5/starbound-autocomplete-json",
