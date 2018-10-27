@@ -1,61 +1,53 @@
 [
 	{
-		"name" : "animationParts",
+		"name" : "activeItem",
 		"type" : "object",
-		"desc" : "A dictionary that identifies the image file to use for an animation part.",
+		"base" : "normalItem",
+		"fileType" : "activeItem",
+		"desc" : "An active item descriptor.",
 		"content" : [
+			{ "name" : "baseOffset", "type" : "array", "description" : "The intial offset of the center of the image from the hand position of the player." },
+			{ "name" : "muzzleOffset", "type" : "array", "description" : "The offset of the barrel location of the gun." },
+			{ "name" : "animation", "type" : "string", "desc" : "The animation file for the weapon."},
+			{ "name" : "scripts", "type" : "array", "desc" : "The scripts that run the active item." },
+			{ "name" : "primaryAbilityType", "type" : "string", "desc" : "The name of the primary ability for the weapon" },
+			{ "name" : "primaryAbility", "base" : "ability", "desc" : "The ability that is used when using the primary fire button." },
+			{ "name" : "secondaryAbilityType", "type" : "string", "desc" : "The name of the secondary ability for the weapon" },
+			{ "name" : "secondaryAbility", "base" : "ability", "desc" : "The ability that is used when using the secondary fire button." },
 			{
-				"name" : "butt",
+				"name" : "elementalType",
 				"type" : "string",
-				"desc" : "The butt of a gun",
+				"desc" : "The scripts that run the active item.",
 				"enum" : [
-					"someting.png",
-					{
-						"value" : "something_else.png",
-						"desc" : "an other enum with documentation"
-					}
+					{ "value" : "physical", "desc" : "The weapon will deal physical damage." },
+					{ "value" : "fire", "desc" : "The weapon will deal fire damage." },
+					{ "value" : "ice", "desc" : "The weapon will deal ice damage." },
+					{ "value" : "poison", "desc" : "The weapon will deal poison damage." },
+					{ "value" : "electric", "desc" : "The weapon will deal electric damage." }
+				]
+			},
+			{
+				"name" : "animationParts",
+				"type" : "object",
+				"desc" : "A dictionary that identifies the image file to use for an animation part.",
+				"content" : [
+					{ "name" : "butt", "type" : "string", "desc" : "The butt of a gun" },
+					{ "name" : "middle", "type" : "string", "desc" : "The middle of the gun" },
+					{ "name" : "barrel", "type" : "string", "desc" : "The barrel of a gun" },
+					{ "name" : "muzzleFlash", "type" : "string", "desc" : "The image for the muzzle flash of a gun" }
 				]
 			}
 		]
 	},
 	{
-		"name" : "baseOffset",
-		"type" : "array",
-		"description" : "the intial offset of the center of the image from the hand position of the player",
-		"enum" : [
-			{
-				"value" : "test",
-				"desc" : "this is a test thing to remove"
-			}
-		],
-		"content" : {
-			"type" : "array",
-			"enum" : [
-				{
-					"value" : "nested",
-					"desc" : "this is a nested enum"
-				}
-			],
-			"content" : "activeItem"
-		}
-	},
-	{
-		"name" : "activeItem",
-		"type" : "object",
-		"base" : "normalItem",
-		"fileType" : "activeItem",
-		"desc" : "An active item descriptor",
-		"content" : [
-			"animationParts",
-			"baseOffset",
-			{ "name" : "primaryAbility", "base" : "itemAbility", "desc" : "the ability that is used when using the primary fire button" }
-		]
-	},
-	{
-		"name" : "itemAbility",
+		"name" : "ability",
 		"type" : "object",
 		"desc" : "An ability that can be bound to an item",
 		"content" : [
+			{ "name" : "name", "type" : "string", "desc" : "The name of the ability." },
+			{ "name" : "class", "type" : "string", "desc" : "The class used to declare the weapon ability object in lua." },
+			{ "name" : "type", "type" : "string", "desc" : "The type of the ability." },
+			{ "name" : "scripts", "type" : "array", "desc" : "The script used for the ability." },
 			{
 				"name" : "stances",
 				"type" : "object",
@@ -116,10 +108,24 @@
 			{ "ref" : "rarity", "desc" : "The rarity of the item" },
 			{ "name" : "description", "type" : "string", "desc" : "A long description of the item" },
 			{ "name" : "shortdescription", "type" : "string", "desc" : "The formatted name of the item" },
-			{ "name" : "tooltipKind", "type" : "string", "desc" : "The type of tooltip to use for this item" },
-			{ "name" : "category", "type" : "string", "desc" : "The item category this item is a part of." },
+			{ "ref" : "tooltipKind", "desc" : "The type of tooltip to use for this item" },
+			{ "name" : "category", "type" : "string", "base" : "itemCategory", "desc" : "The item category this item is a part of." },
 			{ "name" : "twoHanded", "type" : "bool", "desc" : "Wether the item should be held by both hands"},
 			{ "name" : "inventoryIcon", "type" : "string", "desc" : "The path to the image used to represent the item in inventories."}
+		]
+	},
+	{
+		"name" : "itemCategory",
+		"type" : "string",
+		"enum" : [
+			"block", "liquid", "platform", "rail", "chestarmour", "headarmour", "legarmour", "backwear", "chestwear", "headwear", "legwear", "enviroProtectionPack", "clothingDye", "codex", "cookingIngredient", "craftingMaterial", "currency", "drink", "eppAugment", "farmBeastEgg", "farmBeastFood", "fishingRod", "fishingLure", "fishingReel", "food", "foodJunk", "junk", "largeFossil", "mediumFossil", "medicine", "musicalInstrument", "mysteriousReward", "petCollar", "preparedFood", "quest", "railPlatform", "salvageComponent", "shipLicense", "smallFossil", "tech", "throwableItem", "tool", "tradingCard", "trophy", "upgradeComponent", "vehicleController", "fuel", "farmBeastFeed", "mechPart", "tradeGoods", "actionFigure", "artifact", "breakable", "bug", "crafting", "decorative", "door", "fridgeStorage", "furniture", "generic", "light", "other", "railPoint", "sapling", "seed", "shippingContainer", "spawner", "storage", "techManagement", "teleporter", "teleportMarker", "trap", "wire", "terraformer", "assaultRifle", "axe", "boomerang", "bow", "broadsword", "chakram", "crossbow", "dagger", "fistWeapon", "grenadeLauncher", "hammer", "machinePistol", "pistol", "rocketLauncher", "shield", "shortsword", "shotgun", "sniperRifle", "spear", "staff", "wand", "toy", "uniqueWeapon", "whip"
+		]
+	},
+	{
+		"name" : "tooltipKind",
+		"type" : "string",
+		"enum" : [
+			"armor", "back", "base", "baseaugment", "bow", "codex", "container", "door", "eppaugment", "filledcapturepod", "fishingrod", "fishingupgrade", "fistweapon", "food", "fossil", "gun", "mecharm", "mechbody", "mechbooster", "mechlegs", "mm", "object", "petcollar", "seed", "shield", "simpletooltip", "species", "staff", "sword", "tool", "vehicle"
 		]
 	}
 ]
