@@ -103,7 +103,7 @@
 	{
 		"name" : "rarity",
 		"type" : "string",
-		"enum" : [ "common", "uncommon", "rare", "legendary", "essnetial"]
+		"enum" : [ "Common", "Uncommon", "Rare", "Legendary", "Essential"]
 	},
 	{
 		"type" : "object",
